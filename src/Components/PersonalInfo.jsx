@@ -1,9 +1,7 @@
-export default function PersonalInfo({inputValues}){
-
-
+export default function PersonalInfo(){
     return (
         <>
-            {inputValues.name} {inputValues.email} {inputValues.phnNumber}
+            personal info
         </>
-    );
+    )
 }
