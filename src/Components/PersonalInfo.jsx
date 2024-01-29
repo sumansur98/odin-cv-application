@@ -10,7 +10,7 @@ export default function PersonalInfo({ values, onInputChange }){
         <>
             <h1>personal info</h1>
             <form>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" className="text-3xl font-bold underline">Name</label>
                 <input type="text" name="" id="name" value={values.name} onChange={handleInputChange}/>
 
                 <label htmlFor="email">Email</label>
