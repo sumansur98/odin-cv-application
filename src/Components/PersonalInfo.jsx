@@ -1,6 +1,7 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import * as React from 'react';
 
 export default function PersonalInfo({ values, onInputChange }) {
   const handleInputChange = (e) => {
@@ -13,7 +14,13 @@ export default function PersonalInfo({ values, onInputChange }) {
     <>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
-            
+          <TextField
+            id="name"
+            label="Name"
+            variant="standard"
+            value={values.name}
+            onChange={handleInputChange}
+          />
         </CardContent>
       </Card>
     </>
