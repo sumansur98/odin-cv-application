@@ -42,36 +42,13 @@ function App() {
           </Grid>
         </Grid>
         <Grid item xs={6}>
-          <h1>xs=4</h1>
+          <CvComponent personal={personalObj}></CvComponent>
         </Grid>
       </Grid>
     </Container>
   );
 
-  return (
-    <>
-      <Button variant="outlined">Hello world</Button>
-      <div className="flex">
-        <div>
-          <div className="form-container personal-form-div">
-            <PersonalInfo
-              values={personalObj}
-              onInputChange={handlePersonalChange}
-            ></PersonalInfo>
-          </div>
-          <div className="form-container education-form-div">
-            <EducationInfo></EducationInfo>
-          </div>
-          <div className="form-container experience-form-div">
-            <ExperienceInfo></ExperienceInfo>
-          </div>
-        </div>
-        <div>
-          <CvComponent personal={personalObj}></CvComponent>
-        </div>
-      </div>
-    </>
-  );
+ 
 }
 
 export default App;

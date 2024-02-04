@@ -1,9 +1,13 @@
-import PersonalInfoCV from "./PersonalInfoCV"
+import PersonalInfoCV from "./PersonalInfoCV";
+import { Card } from "@mui/material";
 
 export default function CvComponent({personal}){
     return (
         <>
-            <PersonalInfoCV values={personal}></PersonalInfoCV>
+            <Card>
+                <PersonalInfoCV values={personal}></PersonalInfoCV>
+            </Card>
+            
         </>
     )
 }

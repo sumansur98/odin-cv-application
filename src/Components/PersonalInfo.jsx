@@ -21,50 +21,34 @@ export default function PersonalInfo({ values, onInputChange }) {
             value={values.name}
             onChange={handleInputChange}
           />
+
+          <TextField
+            id="email"
+            label="Email"
+            variant="standard"
+            value={values.email}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            id="phnNumber"
+            label="Phone Number"
+            variant="standard"
+            value={values.phnNumber}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            id="location"
+            label="Location"
+            variant="standard"
+            value={values.location}
+            onChange={handleInputChange}
+          />
         </CardContent>
       </Card>
     </>
   );
 
-  return (
-    <>
-      <h1>personal info</h1>
-      <form>
-        <label htmlFor="name" className="text-3xl font-bold underline ">
-          Name
-        </label>
-        <input
-          type="text"
-          name=""
-          id="name"
-          value={values.name}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          value={values.email}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="phnNumber">Phone Number</label>
-        <input
-          type="text"
-          id="phnNumber"
-          value={values.phnNumber}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="location">Location</label>
-        <input
-          type="text"
-          id="location"
-          value={values.location}
-          onChange={handleInputChange}
-        />
-      </form>
-    </>
-  );
+ 
 }
