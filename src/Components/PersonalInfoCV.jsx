@@ -21,9 +21,9 @@ export default function PersonalInfoCV({ values }) {
           justifyContent="center"
           alignItems="center"
         >
-          <Typography><CallIcon /> {values.phnNumber}</Typography>
-          <Typography><EmailIcon />{values.email}</Typography>
-          <Typography><LocationOnIcon />{values.location}</Typography>
+          <Typography>  {(values.phnNumber!=='') ? (<CallIcon />) : null} {values.phnNumber} </Typography>
+          <Typography>{(values.email!=='') ? (<EmailIcon />) : null} {values.email}</Typography>
+          <Typography>{(values.location!=='') ? (<LocationOnIcon />) : null} {values.location}</Typography>
         </Stack>
       </Box>
     </>

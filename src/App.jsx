@@ -7,6 +7,26 @@ import CvComponent from "./Components/CvComponent";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import { v4 as uuidv4 } from 'uuid';
+
+const testData = [
+  {
+    'id' : uuidv4(),
+    'school' : 'school1',
+    'degree' : 'degree1',
+    'startDate' : 'start1',
+    'endDate' : 'end1',
+    'location' : 'location1'
+  },
+  {
+    'id' : uuidv4(),
+    'school' : 'school2',
+    'degree' : 'degree2',
+    'startDate' : 'start2',
+    'endDate' : 'end2',
+    'location' : 'location2'
+  }
+]
 
 function App() {
   const [personalObj, setPersonalObj] = useState({
@@ -16,10 +36,13 @@ function App() {
     location: "",
   });
 
+  
   const handlePersonalChange = (key, value) => {
     const newObj = { ...personalObj, [key]: value };
     setPersonalObj(newObj);
   };
+  
+  const [educationObj, setEducationObj] = useState([]);
 
   return (
     <Container maxWidth="xl">
@@ -37,7 +60,9 @@ function App() {
                 onInputChange={handlePersonalChange}
               ></PersonalInfo>
             </Grid>
-            <Grid item>education</Grid>
+            <Grid item>
+              <EducationInfo values={testData}></EducationInfo>
+            </Grid>
             <Grid item>work</Grid>
           </Grid>
         </Grid>
@@ -47,8 +72,6 @@ function App() {
       </Grid>
     </Container>
   );
-
- 
 }
 
 export default App;
