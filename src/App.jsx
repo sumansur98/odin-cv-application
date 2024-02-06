@@ -16,7 +16,8 @@ const testData = [
     'degree' : 'degree1',
     'startDate' : 'start1',
     'endDate' : 'end1',
-    'location' : 'location1'
+    'location' : 'location1',
+    'hidden' : true, 
   },
   {
     'id' : uuidv4(),
@@ -24,7 +25,8 @@ const testData = [
     'degree' : 'degree2',
     'startDate' : 'start2',
     'endDate' : 'end2',
-    'location' : 'location2'
+    'location' : 'location2',
+    'hidden' : false,
   }
 ]
 
@@ -43,6 +45,10 @@ function App() {
   };
   
   const [educationObj, setEducationObj] = useState([]);
+  
+  const handleEducationChange = ()=>{
+
+  }
 
   return (
     <Container maxWidth="xl">
@@ -61,7 +67,7 @@ function App() {
               ></PersonalInfo>
             </Grid>
             <Grid item>
-              <EducationInfo values={testData}></EducationInfo>
+              <EducationInfo values={testData} onInputChange={handleEducationChange}></EducationInfo>
             </Grid>
             <Grid item>work</Grid>
           </Grid>

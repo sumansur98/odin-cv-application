@@ -12,7 +12,7 @@ export default function PersonalInfo({ values, onInputChange }) {
 
   return (
     <>
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ width: '500px',marginTop : '10px' }}>
         <CardContent>
           <TextField
             id="name"
