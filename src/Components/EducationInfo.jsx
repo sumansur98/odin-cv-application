@@ -13,14 +13,18 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import EducationForm from "./EducationForm";
 
-export default function EducationInfo({ values }) {
+export default function EducationInfo({ values, addEducation }) {
   const [formView, setFormView] = React.useState(false);
-  const [editIndex, setEditIndex] = React.useState(null)
+  const [editIndex, setEditIndex] = React.useState(null);
 
-  const openExistingForm = (index)=>{
+  const openExistingForm = (index) => {
     setFormView(true);
     setEditIndex(index);
-  }
+  };
+
+  const closeForm = () => {
+    setFormView(false);
+  };
 
   return (
     <>
@@ -28,7 +32,11 @@ export default function EducationInfo({ values }) {
         <CardContent>
           <Box component="div">
             {formView ? (
-              <EducationForm values={values[editIndex]}></EducationForm>
+              <EducationForm
+                values={values[editIndex]}
+                closeForm={closeForm}
+                addEducation={addEducation}
+              ></EducationForm>
             ) : (
               <Stack
                 direction="column"
@@ -36,22 +44,27 @@ export default function EducationInfo({ values }) {
                 justifyContent="center"
                 alignItems="center"
               >
-                <EducationItemList values={values} openFormOnClick={openExistingForm}></EducationItemList>
+                <EducationItemList
+                  values={values}
+                  openFormOnClick={openExistingForm}
+                ></EducationItemList>
               </Stack>
             )}
 
-            <Button
-              variant="outlined"
-              size="small"
-              disableElevation
-              endIcon={<AddIcon />}
-              onClick={() => {
-                setFormView(true);
-                setEditIndex(null);
-              }}
-            >
-              Add Education
-            </Button>
+            {!formView && (
+              <Button
+                variant="outlined"
+                size="small"
+                disableElevation
+                endIcon={<AddIcon />}
+                onClick={() => {
+                  setFormView(true);
+                  setEditIndex(null);
+                }}
+              >
+                Add Education
+              </Button>
+            )}
           </Box>
         </CardContent>
       </Card>
@@ -68,7 +81,9 @@ function EducationItemList({ values, openFormOnClick }) {
             key={ele.id}
             title={ele.school}
             hidden={ele.hidden}
-            openFormOnClick={()=>{openFormOnClick(index)}}
+            openFormOnClick={() => {
+              openFormOnClick(index);
+            }}
           ></EducationItem>
         );
       })}

@@ -46,8 +46,9 @@ function App() {
   
   const [educationObj, setEducationObj] = useState([]);
   
-  const handleEducationChange = ()=>{
-
+  const addEducation = (obj)=>{
+    const newObj = educationObj.push(obj);
+    setEducationObj(newObj);
   }
 
   return (
@@ -67,7 +68,7 @@ function App() {
               ></PersonalInfo>
             </Grid>
             <Grid item>
-              <EducationInfo values={testData} onInputChange={handleEducationChange}></EducationInfo>
+              <EducationInfo values={educationObj} addEducation={addEducation}></EducationInfo>
             </Grid>
             <Grid item>work</Grid>
           </Grid>
