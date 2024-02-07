@@ -1,25 +1,58 @@
 import Box from "@mui/system/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
-export default function EducationForm({ values , closeForm, addEducation}) {
+export default function EducationForm({
+  values,
+  closeForm,
+  addEducation,
+  setFormView,
+}) {
+  console.log(values);
 
-  const handleSaveClick = ()=>{
-    const school = document.getElementById('school').value;
-    const degree = document.getElementById('degree').value;
-    const startDate = document.getElementById('startDate').value;
-    const endDate = document.getElementById('endDate').value;
-    const location = document.getElementById('location').value;
+  const [formValObj, setFormValObj] =
+    values === undefined
+      ? useState({
+          school: "",
+          degree: "",
+          startDate: "",
+          endDate: "",
+          location: "",
+        })
+      : useState({
+          school: values.school,
+          degree: values.degree,
+          startDate: values.startDate,
+          endDate: values.endDate,
+          location: values.location,
+        });
+
+  const handleInputChange = (e) => {
+    const val = e.target.value;
+    const id = e.target.id;
+
+    setFormValObj({ ...formValObj, [id]: val });
+  };
+
+  const handleSaveClick = () => {
     const id = uuidv4();
     const hidden = false;
 
     const obj = {
-      school,degree,startDate,endDate,location,id,hidden
-    }
+      school: formValObj.school,
+      degree: formValObj.degree,
+      startDate: formValObj.startDate,
+      endDate: formValObj.endDate,
+      location: formValObj.location,
+      id: formValObj.id,
+      hidden: formValObj.hidden,
+    };
 
     addEducation(obj);
-  }
+    setFormView(false);
+  };
 
   return (
     <>
@@ -28,31 +61,36 @@ export default function EducationForm({ values , closeForm, addEducation}) {
           id="school"
           label="School"
           variant="standard"
-          value={values?.school}
+          value={formValObj.school}
+          onChange={handleInputChange}
         />
         <TextField
           id="degree"
           label="Degree"
           variant="standard"
-          value={values?.degree}
+          value={formValObj.degree}
+          onChange={handleInputChange}
         />
         <TextField
           id="startDate"
           label="Start Date"
           variant="standard"
-          value={values?.startDate}
+          value={formValObj.startDate}
+          onChange={handleInputChange}
         />
         <TextField
           id="endDate"
           label="End Date"
           variant="standard"
-          value={values?.endDate}
+          value={formValObj.endDate}
+          onChange={handleInputChange}
         />
         <TextField
           id="location"
           label="Location"
           variant="standard"
-          value={values?.location}
+          value={formValObj.location}
+          onChange={handleInputChange}
         />
       </Box>
       <Button

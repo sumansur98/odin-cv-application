@@ -47,8 +47,7 @@ function App() {
   const [educationObj, setEducationObj] = useState([]);
   
   const addEducation = (obj)=>{
-    const newObj = educationObj.push(obj);
-    setEducationObj(newObj);
+    setEducationObj([...educationObj,obj]);
   }
 
   return (

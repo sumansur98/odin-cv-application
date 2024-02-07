@@ -36,6 +36,7 @@ export default function EducationInfo({ values, addEducation }) {
                 values={values[editIndex]}
                 closeForm={closeForm}
                 addEducation={addEducation}
+                setFormView={setFormView}
               ></EducationForm>
             ) : (
               <Stack
