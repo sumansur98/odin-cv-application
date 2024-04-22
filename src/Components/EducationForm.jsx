@@ -20,6 +20,8 @@ export default function EducationForm({
           startDate: "",
           endDate: "",
           location: "",
+          id : uuidv4(),
+          hidden : false,
         })
       : useState({
           school: values.school,
@@ -27,6 +29,8 @@ export default function EducationForm({
           startDate: values.startDate,
           endDate: values.endDate,
           location: values.location,
+          id : values.id,
+          hidden : values.hidden,
         });
 
   const handleInputChange = (e) => {

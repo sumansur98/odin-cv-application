@@ -81,28 +81,32 @@ export default function EducationInfo({ values, addEducation, deleteEducation })
 function EducationItemList({ values, openFormOnClick, handleDeleteClick }) {
   return (
     <>
+
       {values.map((ele, index) => {
         return (
           <EducationItem
             key={ele.id}
+            id={ele.id}
             title={ele.school}
             hidden={ele.hidden}
             openFormOnClick={() => {
               openFormOnClick(index);
             }}
-            handleDeleteClick={()=>{
+            handleDeleteClick={() => {
               handleDeleteClick(index);
             }}
           ></EducationItem>
         );
       })}
+
     </>
   );
 }
 
-function EducationItem({ title, hidden, openFormOnClick, handleDeleteClick }) {
+function EducationItem({ id, title, hidden, openFormOnClick, handleDeleteClick }) {
   return (
     <>
+
       <Box sx={{ width: "100%", padding: "5px" }} onClick={openFormOnClick}>
         <Stack
           direction="row"
@@ -119,7 +123,10 @@ function EducationItem({ title, hidden, openFormOnClick, handleDeleteClick }) {
             spacing={1}
           >
             {hidden ? <VisibilityOffIcon /> : <VisibilityIcon />}
-            <DeleteIcon onClick={handleDeleteClick}/>
+            <DeleteIcon onClick={(e) => {
+              handleDeleteClick()
+              e.stopPropagation();
+            }} />
           </Stack>
         </Stack>
       </Box>
