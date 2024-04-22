@@ -11,22 +11,22 @@ import { v4 as uuidv4 } from 'uuid';
 
 const testData = [
   {
-    'id' : uuidv4(),
-    'school' : 'school1',
-    'degree' : 'degree1',
-    'startDate' : 'start1',
-    'endDate' : 'end1',
-    'location' : 'location1',
-    'hidden' : true, 
+    'id': uuidv4(),
+    'school': 'school1',
+    'degree': 'degree1',
+    'startDate': 'start1',
+    'endDate': 'end1',
+    'location': 'location1',
+    'hidden': true,
   },
   {
-    'id' : uuidv4(),
-    'school' : 'school2',
-    'degree' : 'degree2',
-    'startDate' : 'start2',
-    'endDate' : 'end2',
-    'location' : 'location2',
-    'hidden' : false,
+    'id': uuidv4(),
+    'school': 'school2',
+    'degree': 'degree2',
+    'startDate': 'start2',
+    'endDate': 'end2',
+    'location': 'location2',
+    'hidden': false,
   }
 ]
 
@@ -38,16 +38,27 @@ function App() {
     location: "",
   });
 
-  
+
   const handlePersonalChange = (key, value) => {
     const newObj = { ...personalObj, [key]: value };
     setPersonalObj(newObj);
   };
-  
+
   const [educationObj, setEducationObj] = useState([]);
-  
-  const addEducation = (obj)=>{
-    setEducationObj([...educationObj,obj]);
+
+  const addEducation = (obj) => {
+    setEducationObj([...educationObj, obj]);
+  }
+
+  const deleteEducation = (index) => {
+    console.log('delete index', index);
+    console.log('education obj', educationObj);
+    const newEducation = [
+      ...educationObj.slice(0,index),
+      ...educationObj.slice(index+1)
+    ]
+    console.log('after delete', newEducation);
+    setEducationObj(newEducation);
   }
 
   return (
@@ -67,7 +78,10 @@ function App() {
               ></PersonalInfo>
             </Grid>
             <Grid item>
-              <EducationInfo values={educationObj} addEducation={addEducation}></EducationInfo>
+              <EducationInfo
+                values={educationObj}
+                addEducation={addEducation}
+                deleteEducation={deleteEducation}></EducationInfo>
             </Grid>
             <Grid item>work</Grid>
           </Grid>

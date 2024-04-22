@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import EducationForm from "./EducationForm";
 
-export default function EducationInfo({ values, addEducation }) {
+export default function EducationInfo({ values, addEducation, deleteEducation }) {
   const [formView, setFormView] = React.useState(false);
   const [editIndex, setEditIndex] = React.useState(null);
 
@@ -25,6 +25,10 @@ export default function EducationInfo({ values, addEducation }) {
   const closeForm = () => {
     setFormView(false);
   };
+
+  const handleDeleteClick = (index) => {
+    deleteEducation(index);
+  }
 
   return (
     <>
@@ -48,6 +52,7 @@ export default function EducationInfo({ values, addEducation }) {
                 <EducationItemList
                   values={values}
                   openFormOnClick={openExistingForm}
+                  handleDeleteClick={handleDeleteClick}
                 ></EducationItemList>
               </Stack>
             )}
@@ -73,7 +78,7 @@ export default function EducationInfo({ values, addEducation }) {
   );
 }
 
-function EducationItemList({ values, openFormOnClick }) {
+function EducationItemList({ values, openFormOnClick, handleDeleteClick }) {
   return (
     <>
       {values.map((ele, index) => {
@@ -85,6 +90,9 @@ function EducationItemList({ values, openFormOnClick }) {
             openFormOnClick={() => {
               openFormOnClick(index);
             }}
+            handleDeleteClick={()=>{
+              handleDeleteClick(index);
+            }}
           ></EducationItem>
         );
       })}
@@ -92,7 +100,7 @@ function EducationItemList({ values, openFormOnClick }) {
   );
 }
 
-function EducationItem({ title, hidden, openFormOnClick }) {
+function EducationItem({ title, hidden, openFormOnClick, handleDeleteClick }) {
   return (
     <>
       <Box sx={{ width: "100%", padding: "5px" }} onClick={openFormOnClick}>
@@ -111,7 +119,7 @@ function EducationItem({ title, hidden, openFormOnClick }) {
             spacing={1}
           >
             {hidden ? <VisibilityOffIcon /> : <VisibilityIcon />}
-            <DeleteIcon />
+            <DeleteIcon onClick={handleDeleteClick}/>
           </Stack>
         </Stack>
       </Box>
