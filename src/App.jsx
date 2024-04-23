@@ -9,26 +9,6 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { v4 as uuidv4 } from 'uuid';
 
-const testData = [
-  {
-    'id': uuidv4(),
-    'school': 'school1',
-    'degree': 'degree1',
-    'startDate': 'start1',
-    'endDate': 'end1',
-    'location': 'location1',
-    'hidden': true,
-  },
-  {
-    'id': uuidv4(),
-    'school': 'school2',
-    'degree': 'degree2',
-    'startDate': 'start2',
-    'endDate': 'end2',
-    'location': 'location2',
-    'hidden': false,
-  }
-]
 
 function App() {
   const [personalObj, setPersonalObj] = useState({
@@ -60,11 +40,31 @@ function App() {
     console.log('delete index', index);
     console.log('education obj', educationObj);
     const newEducation = [
-      ...educationObj.slice(0,index),
-      ...educationObj.slice(index+1)
+      ...educationObj.slice(0, index),
+      ...educationObj.slice(index + 1)
     ]
     console.log('after delete', newEducation);
     setEducationObj(newEducation);
+  }
+
+  const [experienceObj, setExperienceObj] = useState([]);
+
+  const addExperience = (obj) => {
+    setExperienceObj([...experienceObj, obj])
+  }
+
+  const editExperience = (index, obj) => {
+    let editedExp = [...experienceObj];
+    editedExp[index] = obj;
+    setExperienceObj(editedExp);
+  }
+
+  const deleteExperience = (index) => {
+    const newExp = [
+      ...experienceObj.slice(0, index),
+      ...experienceObj.slice(index+1)
+    ]
+    setExperienceObj(newExp);
   }
 
   return (
@@ -90,13 +90,20 @@ function App() {
                 deleteEducation={deleteEducation}
                 editEducation={editEducation}></EducationInfo>
             </Grid>
-            <Grid item>work</Grid>
+            <Grid item>
+              <ExperienceInfo
+                values={experienceObj}
+                addExperience={addExperience}
+                deleteExperience={deleteExperience}
+                editExperience={editExperience}></ExperienceInfo>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <CvComponent personal={personalObj}></CvComponent>
-        </Grid>
       </Grid>
+      <Grid item xs={6}>
+        <CvComponent personal={personalObj}></CvComponent>
+      </Grid>
+    
     </Container>
   );
 }
