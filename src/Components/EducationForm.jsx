@@ -9,29 +9,31 @@ export default function EducationForm({
   closeForm,
   addEducation,
   setFormView,
+  editEducation,
+  editIndex,
 }) {
   console.log(values);
 
   const [formValObj, setFormValObj] =
     values === undefined
       ? useState({
-          school: "",
-          degree: "",
-          startDate: "",
-          endDate: "",
-          location: "",
-          id : uuidv4(),
-          hidden : false,
-        })
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+        id: uuidv4(),
+        hidden: false,
+      })
       : useState({
-          school: values.school,
-          degree: values.degree,
-          startDate: values.startDate,
-          endDate: values.endDate,
-          location: values.location,
-          id : values.id,
-          hidden : values.hidden,
-        });
+        school: values.school,
+        degree: values.degree,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        location: values.location,
+        id: values.id,
+        hidden: values.hidden,
+      });
 
   const handleInputChange = (e) => {
     const val = e.target.value;
@@ -40,10 +42,7 @@ export default function EducationForm({
     setFormValObj({ ...formValObj, [id]: val });
   };
 
-  const handleSaveClick = () => {
-    const id = uuidv4();
-    const hidden = false;
-
+  const handleAddClick = () => {
     const obj = {
       school: formValObj.school,
       degree: formValObj.degree,
@@ -57,6 +56,21 @@ export default function EducationForm({
     addEducation(obj);
     setFormView(false);
   };
+
+  const handleSaveClick = () => {
+    const obj = {
+      school: formValObj.school,
+      degree: formValObj.degree,
+      startDate: formValObj.startDate,
+      endDate: formValObj.endDate,
+      location: formValObj.location,
+      id: formValObj.id,
+      hidden: formValObj.hidden,
+    };
+
+    editEducation(editIndex, obj);
+    setFormView(false);
+  }
 
   return (
     <>
@@ -105,14 +119,30 @@ export default function EducationForm({
       >
         Cancel
       </Button>
-      <Button
-        variant="outlined"
-        size="small"
-        disableElevation
-        onClick={handleSaveClick}
-      >
-        Save
-      </Button>
+      {
+        (values == undefined) ? (
+
+          <Button
+            variant="outlined"
+            size="small"
+            disableElevation
+            onClick={handleAddClick}
+          >
+            Add
+          </Button>
+        ) : (
+          <Button
+          variant="outlined"
+          size="small"
+          disableElevation
+          onClick={handleSaveClick}
+        >
+          Save
+        </Button>
+        )
+      }
+
+
     </>
   );
 }

@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import EducationForm from "./EducationForm";
 
-export default function EducationInfo({ values, addEducation, deleteEducation }) {
+export default function EducationInfo({ values, addEducation, deleteEducation, editEducation }) {
   const [formView, setFormView] = React.useState(false);
   const [editIndex, setEditIndex] = React.useState(null);
 
@@ -40,7 +40,9 @@ export default function EducationInfo({ values, addEducation, deleteEducation })
                 values={values[editIndex]}
                 closeForm={closeForm}
                 addEducation={addEducation}
+                editEducation={editEducation}
                 setFormView={setFormView}
+                editIndex={editIndex}
               ></EducationForm>
             ) : (
               <Stack

@@ -50,6 +50,12 @@ function App() {
     setEducationObj([...educationObj, obj]);
   }
 
+  const editEducation = (index, obj) => {
+    let editedEducation = [...educationObj];
+    editedEducation[index] = obj;
+    setEducationObj(editedEducation);
+  }
+
   const deleteEducation = (index) => {
     console.log('delete index', index);
     console.log('education obj', educationObj);
@@ -81,7 +87,8 @@ function App() {
               <EducationInfo
                 values={educationObj}
                 addEducation={addEducation}
-                deleteEducation={deleteEducation}></EducationInfo>
+                deleteEducation={deleteEducation}
+                editEducation={editEducation}></EducationInfo>
             </Grid>
             <Grid item>work</Grid>
           </Grid>
