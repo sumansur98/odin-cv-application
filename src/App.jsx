@@ -62,7 +62,7 @@ function App() {
   const deleteExperience = (index) => {
     const newExp = [
       ...experienceObj.slice(0, index),
-      ...experienceObj.slice(index+1)
+      ...experienceObj.slice(index + 1)
     ]
     setExperienceObj(newExp);
   }
@@ -99,11 +99,11 @@ function App() {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item xs={6}>
+          <CvComponent personal={personalObj}></CvComponent>
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        <CvComponent personal={personalObj}></CvComponent>
-      </Grid>
-    
+
     </Container>
   );
 }
